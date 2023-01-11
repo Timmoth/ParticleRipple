@@ -15,9 +15,19 @@
     </div>
     <script src="dist/ParticleRipple.js"></script>
     <script>
+        var m = null;
         window.onload = function () {
-            var m = new ParticleRipple();
+            if (m == null) {
+                m = new ParticleRipple();
+            }
             m.Start();
+        }
+
+        window.unload = function () {
+            if (m == null) {
+                return;
+            }
+            m.Stop();
         }
     </script>
 </body>

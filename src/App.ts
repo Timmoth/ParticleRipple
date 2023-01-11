@@ -31,15 +31,20 @@ export default class App {
   }
 
   Start() {
-    this.tick(0);
+    this.running = true;
+    this.tick();
   }
 
-  tick(timestamp: number) {
-    if (timestamp - this.lastTimeStamp >= 25) {
-      this.lastTimeStamp = timestamp;
-    }
+  Stop() {
+    this.running = false;
+  }
+
+  running: boolean;
+
+  tick() {
+    if (!this.running) return;
     this.scene.update();
     this.renderer.render(this.scene, this.camera);
-    requestAnimationFrame((n) => this.tick(n));
+    requestAnimationFrame((n) => this.tick());
   }
 }
